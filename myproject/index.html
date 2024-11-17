@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目展示</title>
+    <!-- 使用CDN引入Font Awesome和基础样式 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* LOGO样式 */
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            padding: 10px 0;
+        }
+
+        .logo-image {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #333;
+            margin-left: 10px;
+        }
+
+        /* 导航栏样式优化 */
+        .navbar {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 0 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: #f5f5f5;
+            color: #4a90e2;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .logo-image {
+                width: 60px;
+                height: 60px;
+            }
+
+            .logo-text {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* 项目介绍区域 */
+        .project-intro {
+            padding: 3rem 2rem;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-intro h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .project-intro p {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        /* 轮播图样式保持不变 */
+        .slider-container {
+            /* 原有的轮播图样式 */
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .project-intro h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* 论坛区域样式 */
+        .forum-section {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .forum-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .search-box input {
+            padding: 0.5rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 300px;
+        }
+
+        .search-box button {
+            padding: 0.5rem 1rem;
+            background: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* 帖子卡片样式 */
+        .post-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #eee;
+        }
+
+        .post-info {
+            flex: 1;
+        }
+
+        .author-name {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .post-time {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .post-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .post-content {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .post-actions {
+            display: flex;
+            gap: 1rem;
+            color: #666;
+        }
+
+        .post-actions span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        /* 发帖区域样式 */
+        .post-editor {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .post-editor textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            resize: vertical;
+        }
+
+        .post-editor button {
+            padding: 0.8rem 2rem;
+            background: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* 分页控件样式 */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .pagination button {
+            padding: 0.5rem 1rem;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .pagination button.active {
+            background: #4a90e2;
+            color: white;
+            border-color: #4a90e2;
+        }
+
+        /* 响应式设计补充 */
+        @media (max-width: 768px) {
+            .forum-header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+            .search-box input {
+                width: 100%;
+            }
+
+            .post-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        /* 页脚样式 */
+        .footer {
+            background: #f8f9fa;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid #eee;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #4a90e2;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: #666;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #4a90e2;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+            color: #666;
+        }
+
+        /* 响应式设计补充 */
+        @media (max-width: 768px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+        /* 项目介绍样式 */
+        .project-intro {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .intro-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .intro-header h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .intro-header p {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* 轮播图样式 */
+        .slider-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 2rem auto;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+
+        .slide-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: rgba(0,0,0,0.6);
+            color: white;
+        }
+
+        .slide-caption h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .slider-buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 1rem;
+        }
+
+        .slider-btn {
+            background: rgba(255,255,255,0.8);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #333;
+            transition: all 0.3s;
+        }
+
+        .slider-btn:hover {
+            background: white;
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .dot.active {
+            background: white;
+        }
+
+        /* 特点展示样式 */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #4a90e2;
+            margin-bottom: 1rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .slide img {
+                height: 300px;
+            }
+        }
+
+        /* 新增样式 */
+        .intro-text {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .main-intro {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+            text-align: justify;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-detail {
+            max-width: 1000px;
+            margin: 4rem auto 0;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .detail-section {
+            margin-bottom: 2rem;
+        }
+
+        .detail-section h2 {
+            color: #333;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #4a90e2;
+        }
+
+        .detail-section p {
+            color: #666;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        @media (max-width: 768px) {
+            .intro-text {
+                padding: 1rem;
+            }
+
+            .project-detail {
+                margin: 2rem 1rem;
+                padding: 1rem;
+            }
+        }
+
+        /* 优化图片显效果的样式 */
+        .slide img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.3s ease;
+        }
+
+        .slide:hover img {
+            transform: scale(1.02);
+        }
+
+        /* 优化图片加载的样式 */
+        .slide {
+            background: #f5f5f5; /* 图片加载前的背景色 */
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 添加图片加载动画 */
+        @keyframes imageLoad {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .slide img {
+            animation: imageLoad 0.5s ease;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .slide img {
+                height: 300px;
+            }
+        }
+
+        /* 快速链接样式 */
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links a:hover {
+            color: #4a90e2;
+        }
+
+        .footer-links a::before {
+            content: '•';
+            margin-right: 8px;
+            color: #4a90e2;
+        }
+
+        /* 关于我们部分样式 */
+        .footer-section h3 {
+            color: #333;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 30px;
+            height: 2px;
+            background: #4a90e2;
+        }
+
+        .footer-section p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        /* 页脚联系方式部分更新 */
+        .footer-section contact-section {
+            <h3>联系方式</h3>
+            <ul class="contact-info">
+                <li>
+                    <i class="fas fa-phone"></i>
+                    <div class="contact-details">
+                        <a href="tel:19312917104">19312917104</a>
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-envelope"></i>
+                    <div class="contact-details">
+                        <a href="mailto:LEINILI@outlook.com">LEINILI@outlook.com</a>
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div class="contact-details">
+                        <p>甘肃省兰州市</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        /* 联系方式样式更新 */
+        .contact-info {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact-info li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info i {
+            color: #4a90e2;
+            font-size: 1.2rem;
+            margin-right: 1rem;
+        }
+
+        .contact-details a,
+        .contact-details p {
+            color: #666;
+            text-decoration: none;
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .contact-details a:hover {
+            color: #4a90e2;
+        }
+
+        /* 公众号按钮样式 */
+        .wechat-btn-container {
+            text-align: right;
+            margin-bottom: 2rem;
+        }
+
+        .wechat-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #07C160;  /* 微信绿色 */
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .wechat-btn:hover {
+            background: #06ae56;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 10px rgba(7, 193, 96, 0.2);
+        }
+
+        .wechat-btn i {
+            font-size: 1.2rem;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .wechat-btn-container {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <img src="imgs/4.jpg" alt="寺院养老" class="logo-image">
+                <span class="logo-text">寺院养老</span>
+            </a>
+            <div class="nav-links">
+                <a href="#project">项目介绍</a>
+                <a href="#forum">交流论坛</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 项目介绍区域 -->
+    <section id="project" class="project-intro">
+        <div class="intro-header">
+            <h1>寺院养老</h1>
+            <div class="intro-text">
+                <p class="main-intro">当今社会，人口的老龄化趋势正严峻考验着世界各国的养老保障体系。养老是政府、家庭和社会的共同责任，因此，养老保障提供主体的多元化是减轻老龄化社会养老压力的必然选择。宗教养老作为一种新型的养老方式，从精神安养的高度强调"以人为中心"的行动理念，有助于老人安身、安心、安魂三重境界。</p>
+            </div>
+        </div>
+
+        <!-- 轮播图 -->
+        <div class="slider-container">
+            <div class="slider">
+                <div class="slide">
+                    <img src="./imgs/1.jpg" alt="寺院环境展示">
+                    <div class="slide-caption">
+                        <h3>优美的寺院环境</h3>
+                        <p>宁静祥和的修身养性之所</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="./imgs/2.jpg" alt="养老服务展示">
+                    <div class="slide-caption">
+                        <h3>专业的养老服务</h3>
+                        <p>提供全方位的生活照护与关怀</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="./imgs/3.jpg" alt="文化活动展示">
+                    <div class="slide-caption">
+                        <h3>丰富的文化活动</h3>
+                        <p>让晚年生活充满意义与安宁</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slider-buttons">
+                <button class="slider-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                <button class="slider-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            
+            <div class="slider-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+
+        <!-- 特点展示 -->
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h3>安身</h3>
+                <p>提供优质的住宿、饮食和医疗服务，保障老年人的基本生活需求</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>安心</h3>
+                <p>通过专业的养老服务和关怀，让老年人享受温馨舒适的晚年生活</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-om"></i>
+                </div>
+                <h3>安魂</h3>
+                <p>依托佛教文化，提供精神慰藉，助老人达到身心灵的和谐统一</p>
+            </div>
+        </div>
+
+        <!-- 项目说明部分 -->
+        <div class="project-detail">
+            <div class="detail-section">
+                <h2>项目愿景</h2>
+                <p>该项目旨在通过探索和实践，根据实践过程中出现的一系列问题与经验，探索出一套更加适配当今时代的养老模式。寺庙养老属于宗教养老范畴，是一种基于佛教文化和信仰的养老方式。老年人可以在寺庙里参与诵经、禅修、园艺等活动，得到住宿、饮食、医疗、精神慰藉等服务，实现身心的和谐统一。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 论坛区域 -->
+    <section id="forum" class="forum-section">
+        <div class="forum-container">
+            <h2 class="section-title">交流论坛</h2>
+            
+            <!-- 论坛主体 -->
+            <div class="forum-main">
+                <!-- 公众号跳转按钮 -->
+                <div class="wechat-btn-container">
+                    <a href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzkzOTY2NDkxNg==&scene=124#wechat_redirect" class="wechat-btn" target="_blank">
+                        <i class="fab fa-weixin"></i> 关注公众号参与讨论
+                    </a>
+                </div>
+
+                <!-- 分类导航 -->
+                <div class="forum-nav">
+                    <!-- ... 其他内容保持不变 ... -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>关于我们</h3>
+                <p>这是一个致力于推广寺院养老模式的平台，为老年人提供优质的养老服务和精神关怀。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul class="footer-links">
+                    <li><a href="#project">项目介绍</a></li>
+                    <li><a href="#forum">交流论坛</a></li>
+                </ul>
+            </div>
+            <div class="footer-section contact-section">
+                <h3>联系方式</h3>
+                <ul class="contact-info">
+                    <li>
+                        <i class="fas fa-phone"></i>
+                        <div class="contact-details">
+                            <a href="tel:19312917104">19312917104</a>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <div class="contact-details">
+                            <a href="mailto:LEINILI@outlook.com">LEINILI@outlook.com</a>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="contact-details">
+                            <p>甘肃省兰州市</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 寺院养老. 保留所有权利。</p>
+        </div>
+    </footer>
+
+    <script>
+        // 轮播图功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const slider = document.querySelector('.slider');
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.dot');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            
+            let currentSlide = 0;
+            const slideCount = slides.length;
+
+            // 更新轮播图位置
+            function updateSlider() {
+                slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+                // 更新圆点状态
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlide);
+                });
+            }
+
+            // 下一张
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slideCount;
+                updateSlider();
+            }
+
+            // 上一张
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + slideCount) % slideCount;
+                updateSlider();
+            }
+
+            // 添加按钮事件监听
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+
+            // 添加圆点点击事件
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    currentSlide = index;
+                    updateSlider();
+                });
+            });
+
+            // 自动轮播
+            setInterval(nextSlide, 5000);
+        });
+    </script>
+</body>
+</html> 
